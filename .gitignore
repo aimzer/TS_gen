@@ -1,0 +1,12 @@
+# exclude everything
+experiments/*
+tuner_experiments/*
+
+*.sh
+__pycache__/
+
+.ipynb_checkpoints
+
+#exception to the rule
+!experiments/.gitkeep
+!tuner_experiments/.gitkeep

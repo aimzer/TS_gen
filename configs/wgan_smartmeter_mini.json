@@ -1,0 +1,45 @@
+{
+    "exp_name": "experiment_wgan_year",
+    "arch": {
+      "init_std": 0.02,
+      "init_bias": 0,
+      "d_arch": "dcgan",
+      "d_num_layers": 4,
+      "d_num_filters": 512,
+      "d_conv_kernal": 5,
+      "d_batch_norm": false,
+      "g_arch": "dcgan",
+      "g_num_layers": 4,
+      "g_num_filters": 512,
+      "g_conv_kernal": 5,
+      "g_batch_norm": false
+    },
+    "model": {
+      "name": "GAN_GPU.GAN",
+      "loss": "wgan",
+      "optim_lr": 0.0001,
+      "optim_beta1": 0.5,
+      "optim_beta2": 0.9,
+      "input_curve_dim": 336,
+      "input_noise_dim": 100,
+      "max_to_keep": 3
+    },
+    "trainer": {
+      "name": "GAN_trainer.GANTrainer",
+      "num_epochs": 2,
+      "batch_size": 128,
+      "discriminator_iters": 5,
+      "gpus": [0,1],
+      "verbose": false
+    },
+    "data": {
+      "name": "smartmeter_data_loader.SmartmeterLoader",
+      "dataset": "smartmeter",
+      "file_data": "datasets/smartmeter/processing/smartmeter_week_mini.csv",
+      "file_data_labels": "datasets/smartmeter/processing/smartmeter_week_inds_mini.csv",
+      "transform": "ihs",
+      "transform_lambda": 300,
+      "normalize": true,
+      "test_ratio": 0
+    }
+  }

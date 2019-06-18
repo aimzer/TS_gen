@@ -1,0 +1,70 @@
+{
+  "exp_name": "experiment_wae_smartmeter",
+  "arch": {
+    "init_std": 0.0099999,
+    "init_bias": 0,
+    "batch_norm_eps": 1e-05,
+    "batch_norm_decay": 0.9,
+
+    "e_arch": "dcgan",
+    "e_num_layers": 4,
+    "e_num_filters": 256,
+    "e_conv_kernal": 5,
+    "e_batch_norm": true,
+    
+    "g_arch": "dcgan",
+    "g_num_layers": 4,
+    "g_num_filters": 256,
+    "g_conv_kernal": 5,
+    "g_batch_norm": true,
+    
+    "d_num_layers": 3,
+    "d_num_filters": 256
+    
+  },
+  "model": {
+    "name": "WAE.WAE",
+      
+    "input_curve_dim": 368,
+    "input_label_dim": 6,
+    "zdim": 50,
+    "pz_scale": 1,
+
+    "e_pretrain_sample_size": 1000,
+    "e_pretrain": true,
+    "e_noise": "add_noise",
+
+    "z_test": "mmd",
+    "gan_p_trick": false,
+    "cost": "l2",
+    "deriv_lambda": 0.7,
+    "lambda": 40,
+    "mmd_kernel": "IMQ",
+    "pz": "normal",
+    
+    "optim": "adam",
+    "optim_lr": 0.001,
+    "optim_lr_adv": 0.001,
+    "optim_beta1": 0.5,
+    "optim_beta2": 0.9,
+    "lr_schedule": "manual",
+    
+    "max_to_keep": 3
+  },
+  "trainer": {
+    "name": "WAE_trainer.WAETrainer",
+    "num_epochs": 30,
+    "batch_size": 256,
+    "verbose": false
+  },
+  "data": {
+    "name": "smartmeter_data_loader.SmartmeterLoader",
+    "dataset": "smartmeter",
+    "file_data": "datasets/smartmeter/processing/smartmeter_week.csv",
+    "file_data_labels": "datasets/smartmeter/processing/smartmeter_week_inds.csv",
+    "transform": "ihs",
+    "transform_lambda": 300,
+    "normalize": true,
+    "test_ratio": 0.1
+  }
+}
