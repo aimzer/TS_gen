@@ -5,7 +5,7 @@ numpy==1.15.1
 tqdm==4.29.1
 pandas==0.20.1
 scipy==0.19.1
-tensorflow==1.12.0
+tensorflow==2.5.1
 scikit_learn==0.20.3
 scikit_optimize==0.5.2
 
